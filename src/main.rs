@@ -1,10 +1,10 @@
 #![allow(unused)]
 
 mod macros;
-mod vlen_lsb_radix;
+mod vlen_lsd_radix;
 
 enum Examples {
-    VlenLsbRadix,
+    VlenLsdRadix,
 }
 
 impl std::str::FromStr for Examples {
@@ -12,7 +12,7 @@ impl std::str::FromStr for Examples {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let value = match s {
-            "lsb-radix" => Self::VlenLsbRadix,
+            "lsd-radix" => Self::VlenLsdRadix,
             _ => return Err(()),
         };
         Ok(value)
@@ -25,7 +25,7 @@ fn main() {
         .nth(1).expect("expected example argument")
         .parse().expect("expected example");
     match example {
-        Examples::VlenLsbRadix => vlen_lsb_radix::example(),
+        Examples::VlenLsdRadix => vlen_lsd_radix::example(),
     }
 }
 

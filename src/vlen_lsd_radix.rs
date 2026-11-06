@@ -7,7 +7,7 @@ fn fmt(bytes: &[u8]) -> &str {
 pub fn example() {
     let strings = seqs![
         b"CDEFG",
-        b"CDEG",
+        b"CDEF",
         b"CDE",
         b"CD",
         b"C",
@@ -17,6 +17,7 @@ pub fn example() {
         b"BCD",
         b"BC",
         b"B",
+        b"AAAAAAAAA",
         b"ABCDE",
         b"ABCD",
         b"ABC",
@@ -30,7 +31,7 @@ pub fn example() {
     let alpha_start = b'A';
     let sigma = (b'Z' - b'A' + 1) as usize;
 
-    let order = lsb_sort(&strings, alpha_start, sigma);
+    let order = lsd_sort(&strings, alpha_start, sigma);
     println!("before:");
     for string in &strings {
         println!("{}", fmt(string));
@@ -41,7 +42,7 @@ pub fn example() {
     }
 }
 
-fn lsb_sort(strings: &[Vec<u8>], alpha_start: u8, sigma: usize) -> Vec<usize> {
+fn lsd_sort(strings: &[Vec<u8>], alpha_start: u8, sigma: usize) -> Vec<usize> {
     let n = strings.len();
 
     let mut output = vec![0_usize; n];
